@@ -10,8 +10,8 @@ function Header(props) {
 function Nav(props) {
   const lis = [
     <li><a href='/read/1'>html</a></li>,
-    <li><a href='/read/1'>css</a></li>,
-    <li><a href='/read/1'>js</a></li>
+    <li><a href='/read/2'>css</a></li>,
+    <li><a href='/read/3'>js</a></li>
   ]
   for(let i=0; i <props.topics; i++){
     let t = props.topics[i];
