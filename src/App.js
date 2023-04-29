@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-// 함수로 정의 : 컴포넌트
+// 함수로 정의 
 function Header() {
   return <header>
      <h1><a href='/'>WEB</a></h1>
@@ -25,6 +25,7 @@ function Article() {
 function App() {
   return (
     <div>
+    // 컴포넌트 
     <Header></Header>
     <Header></Header>
     <Header></Header>
