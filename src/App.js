@@ -1,28 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 // 함수형 컴포넌트
-function Header(props) {
-  console.log('props',props, props.title);
-  return <header>
-     <h1><a href='/'>{props.title}</a></h1>
-  </header>
-}
-function Nav(props) {
-  const lis = [
-    <li><a href='/read/1'>html</a></li>,
-    <li><a href='/read/2'>css</a></li>,
-    <li><a href='/read/3'>js</a></li>
-  ]
-  for(let i=0; i <props.topics; i++){
-    let t = props.topics[i];
-    lis.push(<li key={t.id}><a href>{'/read/'+t.id}</a>{t.title}</li>)
-  }
-  return <nav>
-     <ol>
-      {lis}
-      </ol>
-  </nav>
-} 
 function Article(props) {
   return <article>
      <h2>{props.title}</h2>
@@ -30,6 +8,34 @@ function Article(props) {
         
   </article>
 }
+
+function Header(props) {
+  console.log('props',props, props.title);
+  return <header>
+     <h1><a href='/' onClick={(event) =>{
+      event.preventDefault();
+      props.onChangeMode();
+     }}>{props.title}</a></h1>
+  </header>
+}
+
+function Nav(props) {
+  const lis = []
+  for(let i=0; i<props.topics.length; i++){
+    let t = props.topics[i];
+    lis.push(<li key={t.id}>
+      <a id={t.id} href={'/read/'+t.id} onClick={event=> {
+        event.preventDefault();
+        props.onChangeMode(event.target.id);
+      }}>{t.title}</a>
+      </li>)
+  }
+  return <nav>
+     <ol>
+      {lis}
+      </ol>
+  </nav>
+} 
 
 function App() {
   const topics = [
@@ -39,10 +45,14 @@ function App() {
   ]
   return (
     <div>
-    <Header title="REACT"></Header>
+    <Header title="REACT" onChangeMode={() => {
+      alert('Header');
+    }}></Header>
     <Header></Header>
     <Header></Header>
-    <Nav topics="{topics}"></Nav>
+    <Nav topics={topics} onChangeMode={(id)=>{
+      alert(id);
+    }}></Nav>
     <Article title="Welcome" body="Hello, Web"></Article>
     </div>
   );
