@@ -65,7 +65,7 @@ function App() {
         body = topics[i].body;
       }
     }
-    content = <Article title="Read" body="Hello, Read"></Article>
+    content = <Article title={title} body={body}></Article>
   }
   return (
     <div>
